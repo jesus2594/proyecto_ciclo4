@@ -38,3 +38,42 @@ exports.findOne = function(req,res){
         res.json(producto)
     })
 }
+
+exports.update = function(req, res){
+    let producto = {
+        nombre: req.body.nombre,
+        descripcion: req.body.descripcion,
+        valor: req.body.valor
+    }
+
+    Producto.findByIdAndUpdate(req.params.id, {$set: producto}, function(err){
+        if(err){
+            console.error(err),
+            response.exito = false,
+            response.msg = "Error al modificar el producto"
+            res.json(response)
+            return;
+        }
+    
+        response.exito = true,
+        response.msg = "El producto se modifico correctamente"
+        res.json(response)
+    })
+}
+
+exports.remove = function(req, res){
+    Producto.findByIdAndRemove({_id: req.params.id}, function(err){
+        if(err){
+            console.error(err),
+            response.exito = false,
+            response.msg = "Error al eliminar el producto"
+            res.json(response)
+            return;
+        }
+
+        response.exito = true,
+        response.msg = "El producto fue eliminado correctamente"
+        res.json(response)
+    })
+}
+
