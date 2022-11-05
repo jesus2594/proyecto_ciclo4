@@ -9,6 +9,8 @@ var auth = require("./auth/main_auth")
 
 var productosRouter = require('./routes/productos.router');
 var usuariosRouter = require('./routes/usuario.router');
+var vendedorRouter = require('./routes/vendedor.router');
+var compradorRouter = require('./routes/comprador.router');
 
 var app = express();
 
@@ -27,6 +29,8 @@ app.use(auth)
 
 //Router
 app.use('/productos', productosRouter);
+app.use('/vendedor', vendedorRouter);
+app.use('/comprador', compradorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
