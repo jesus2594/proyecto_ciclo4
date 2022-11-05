@@ -9,7 +9,8 @@ exports.create = function(req, res){
        
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
-        valor: req.body.valor
+        valor: req.body.valor,
+        cantidad: req.body.cantidad
     })
 
     producto.save(function(err){
@@ -43,7 +44,8 @@ exports.update = function(req, res){
     let producto = {
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
-        valor: req.body.valor
+        valor: req.body.valor,
+        cantidad: req.body.cantidad,
     }
 
     Producto.findByIdAndUpdate(req.params.id, {$set: producto}, function(err){
