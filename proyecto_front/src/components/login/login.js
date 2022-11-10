@@ -5,6 +5,7 @@ import app from '../../app.json';
 import './login.css';
 import { isNull } from 'util';
 import Cookies from "universal-cookie";
+import { calcularExpirarSesion } from "../helper/helper";
 
 const { APIHOST } = app;
 const cookies = new Cookies();
@@ -29,7 +30,7 @@ export default class login extends React.Component {
       }else{
         cookies.set('_s', response.data.token, {
           path: '/',
-          expires:
+          expires: calcularExpirarSesion(),
         });
       }
     }).catch((err) => {
