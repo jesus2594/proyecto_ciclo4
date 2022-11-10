@@ -6,7 +6,7 @@ import {
   Nav,
   Navbar,
   Row,
-  Col,
+  
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";

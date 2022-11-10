@@ -1,6 +1,13 @@
 import React from "react";
+import axios from "axios";
 import { Button, Container, Form, Row, Col } from "react-bootstrap";
-import './login.css'
+import app from '../../app.json';
+import './login.css';
+import { isNull } from 'util';
+import Cookies from "universal-cookie";
+
+const { APIHOST } = app;
+const cookies = new Cookies();
 
 export default class login extends React.Component {
   constructor(props) {
@@ -12,7 +19,22 @@ export default class login extends React.Component {
   }
 
   iniciarSesion(){
-    alert('Boton de iniciar sesion')
+    axios.post(`${APIHOST}/usuarios/login`,{
+      usuario: this.state.usuario,
+      pass: this.state.pass,
+    })
+    .then((response) => {
+      if(isNull(response.data.token)){
+        alert('Usuario y/o contraseña invalidos');
+      }else{
+        cookies.set('_s', response.data.token, {
+          path: '/',
+          expires:
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   render() {
